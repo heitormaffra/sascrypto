@@ -14,6 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.GeracaoHash;
 import model.dao.UsuarioDao;
 import model.entities.Usuario;
@@ -48,7 +49,10 @@ public class Autenticar extends HttpServlet {
             boolean valida = autenticar.validaLogin(nomeUsuario, senha, hash);
             if (valida) {
                 RequestDispatcher dispacher = request.getRequestDispatcher("index.jsp");
-                request.setAttribute("resposta", "Login efetuado com sucesso");
+                
+                HttpSession session = request.getSession();
+                session.setAttribute("usuario", nomeUsuario);
+                
                 dispacher.forward(request, response);
 
             } else {

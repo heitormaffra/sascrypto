@@ -70,10 +70,7 @@ public class HashController extends HttpServlet {
             } catch (NoSuchAlgorithmException ex) {
                 Logger.getLogger(HashController.class.getName()).log(Level.SEVERE, null, ex);
             }
-
-
-
-
+ 
         } finally {
             out.close();
         }
